@@ -30,6 +30,9 @@
                 <td>
                     <a href="{% url 'vlan.edit' vlan.vlan_id %}">Edit</a>
                 </td>
+                <td>
+                    <a href="{% url 'vlan.delete' vlan.vlan_id %}">Delete</a>
+                </td>
             </tr>
         {% endfor %}
     </tbody>

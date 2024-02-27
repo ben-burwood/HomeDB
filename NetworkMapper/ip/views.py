@@ -34,6 +34,12 @@ def edit_vlan(request, vlan_id: int):
     return render(request, "ip/vlan/edit.html", {"form": form, "vlan": vlan})
 
 
+def delete_vlan(request, vlan_id: int):
+    vlan = get_object_or_404(VLAN, vlan_id=vlan_id)
+    vlan.delete()
+    return redirect("vlan.index")
+
+
 def wifi_index(request):
     wifis = WifiNetwork.objects.all()
     return render(request, "ip/wifi/index.html", {"wifis": wifis})
@@ -63,3 +69,9 @@ def edit_wifi(request, id: int):
         form = WifiForm(instance=wifi)
 
     return render(request, "ip/wifi/edit.html", {"form": form, "wifi": wifi})
+
+
+def delete_wifi(request, id: int):
+    wifi = get_object_or_404(WifiNetwork, id=id)
+    wifi.delete()
+    return redirect("wifi.index")
