@@ -12,11 +12,3 @@ class VLAN(models.Model):
     @property
     def subnet(self) -> str:
         return f"192.168.{self.vlan_id}.0/24"
-
-
-class WifiNetwork(models.Model):
-    ssid = models.CharField(max_length=100)
-    password = models.CharField(max_length=100, null=True, blank=True)
-
-    def __str__(self):
-        return self.ssid
