@@ -27,6 +27,9 @@
                 <td>{{ vlan.name }}</td>
                 <td>{{ vlan.description|default:"N/A" }}</td>
                 <td>{{ vlan.subnet }}</td>
+                <td>
+                    <a href="{% url 'vlan.edit' vlan.id %}">Edit</a>
+                </td>
             </tr>
         {% endfor %}
     </tbody>
