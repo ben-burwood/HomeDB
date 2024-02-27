@@ -1,6 +1,7 @@
 from django.db import models
 
-from NetworkMapper.ip.models import VLAN, WifiNetwork
+from .vlan import VLAN
+from .wifi import WifiNetwork
 
 class ClientDevice(models.Model):
     CONNECTION_TYPES = (
