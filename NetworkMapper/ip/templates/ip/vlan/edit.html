@@ -9,7 +9,7 @@
 
 <h1>Edit VLAN - {{ vlan.vlan_id }}</h1>
 
-<form method="post" action="{% url 'vlan.edit' vlan.id %}">
+<form method="post" action="{% url 'vlan.edit' vlan.vlan_id %}">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Save Changes</button>
