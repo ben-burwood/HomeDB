@@ -21,7 +21,7 @@ def create_vlan(request):
 
 
 def edit_vlan(request, vlan_id: int):
-    vlan = get_object_or_404(VLAN, id=vlan_id)
+    vlan = get_object_or_404(VLAN, vlan_id=vlan_id)
 
     if request.method == "POST":
         form = VLANForm(request.POST, instance=vlan)

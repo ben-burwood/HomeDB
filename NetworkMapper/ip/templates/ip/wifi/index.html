@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIFI List</title>
+</head>
+<body>
+
+<a href="{% url 'wifi.create' %}">Create WIFI Network</a>
+
+<h1>WIFI List</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>SSID</th>
+            <th>Password</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for wifi in wifis %}
+            <tr>
+                <td>{{ wifi.name }}</td>
+                <td>{{ vlan.password }}</td>
+                <td>
+                    <a href="{% url 'wifi.edit' wifi.id %}">Edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

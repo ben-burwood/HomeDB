@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create VLAN</title>
+    <title>Create WIFI Network</title>
 </head>
 <body>
 
-<h1>Create VLAN</h1>
+<h1>Create WIFI Network</h1>
 
-<form method="post" action="{% url 'vlan.create' %}">
+<form method="post" action="{% url 'wifi.create' %}">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Create</button>
 </form>
 
-<a href="{% url 'vlan.index' %}">Back to VLAN List</a>
+<a href="{% url 'wifi.index' %}">Back to WIFI Network List</a>
 
 </body>
 </html>
