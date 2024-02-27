@@ -1,0 +1,14 @@
+from django.db import models
+
+
+class VLAN(models.Model):
+    vlan_id = models.IntegerField(unique=True)
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.vlan_id} - {self.name}"
+
+    @property
+    def subnet(self) -> str:
+        return f"192.168.{self.vlan_id}.0/24"

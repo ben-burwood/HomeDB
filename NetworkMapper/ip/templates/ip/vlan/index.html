@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VLAN List</title>
+</head>
+<body>
+
+<a href="{% url 'vlan.create' %}">Create VLAN</a>
+
+<h1>VLAN List</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>VLAN ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Subnet</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for vlan in vlans %}
+            <tr>
+                <td>{{ vlan.vlan_id }}</td>
+                <td>{{ vlan.name }}</td>
+                <td>{{ vlan.description|default:"N/A" }}</td>
+                <td>{{ vlan.subnet }}</td>
+                <td>
+                    <a href="{% url 'vlan.edit' vlan.id %}">Edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

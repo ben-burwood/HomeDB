@@ -5,6 +5,8 @@ __pycache__/
 
 # IDE
 .idea
+.run
+.vscode
 
 # Environments
 .env
@@ -14,3 +16,6 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+
+# Databases
+*.sqlite3
