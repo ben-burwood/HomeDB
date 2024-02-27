@@ -25,10 +25,9 @@ class ClientDeviceForm(forms.ModelForm):
     def __init__(self, *args, vlan_options=None, wifi_options=None, **kwargs):
         super(ClientDeviceForm, self).__init__(*args, **kwargs)
 
-        empty_choice = [("", "None")]
+        self.fields["vlan"].widget = forms.Select(choices=vlan_options, attrs={"class": "form-control"})
 
-        self.fields["vlan"].widget = forms.Select(choices=empty_choice + vlan_options, attrs={"class": "form-control"})
-        self.fields["vlan"].required = False
+        empty_choice = [("", "None")]
 
         self.fields["wifi"].widget = forms.Select(choices=empty_choice + wifi_options, attrs={"class": "form-control"})
         self.fields["wifi"].required = False
