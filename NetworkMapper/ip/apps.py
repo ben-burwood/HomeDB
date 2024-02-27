@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class VlanConfig(AppConfig):
+class IpConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "vlan"
+    name = "ip"
