@@ -17,6 +17,8 @@
             <th>Name</th>
             <th>MAC Address</th>
             <th>IP Address</th>
+            <th>VLAN</th>
+            <th>Wifi Network</th>
             <th>Connection</th>
         </tr>
     </thead>
@@ -26,6 +28,8 @@
                 <td>{{ device.name }}</td>
                 <td>{{ device.mac_address }}</td>
                 <td>{{ device.ip_address }}</td>
+                <td>{{ device.vlan }}</td>
+                <td>{{ device.wifi.ssid }}</td>
                 <td>{{ device.connection_type }}</td>
                 <td>
                     <a href="{% url 'device.edit' device.id %}">Edit</a>
