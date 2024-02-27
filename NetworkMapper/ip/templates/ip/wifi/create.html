@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create WIFI Network</title>
-</head>
-<body>
+{% extends "../../static/master.html" %}
+
+
+{% block title %}
+  Create WIFI Network
+{% endblock %}
+
+
+{% block content %}
 
 <h1>Create WIFI Network</h1>
 
@@ -17,5 +18,4 @@
 
 <a href="{% url 'wifi.index' %}">Back to WIFI Network List</a>
 
-</body>
-</html>
+{% endblock %}
