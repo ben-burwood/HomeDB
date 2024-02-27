@@ -1,5 +1,7 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
+from .models import VLAN
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the IP index.")
+    vlans = VLAN.objects.all()
+    return render(request, "ip/vlan/index.html", {"vlans": vlans})
