@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device List</title>
+</head>
+<body>
+
+<a href="{% url 'device.create' %}">Create Device</a>
+
+<h1>Device List</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>MAC Address</th>
+            <th>IP Address</th>
+            <th>VLAN</th>
+            <th>Wifi Network</th>
+            <th>Connection</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for device in devices %}
+            <tr>
+                <td>{{ device.name }}</td>
+                <td>{{ device.mac_address }}</td>
+                <td>{{ device.ip_address }}</td>
+                <td>{{ device.vlan }}</td>
+                <td>{{ device.wifi.ssid }}</td>
+                <td>{{ device.connection_type }}</td>
+                <td>
+                    <a href="{% url 'device.edit' device.id %}">Edit</a>
+                </td>
+                <td>
+                    <a href="{% url 'device.delete' device.id %}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

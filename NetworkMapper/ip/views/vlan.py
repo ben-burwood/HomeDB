@@ -13,7 +13,7 @@ def create(request):
         form = VLANForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("vlan.index")  # Redirect to the VLAN Index after successful creation
+            return redirect("vlan.index")
     else:
         form = VLANForm()
 
@@ -27,7 +27,7 @@ def edit(request, vlan_id: int):
         form = VLANForm(request.POST, instance=vlan)
         if form.is_valid():
             form.save()
-            return redirect("vlan.index")  # Redirect to the VLAN Index after successful edit
+            return redirect("vlan.index")
     else:
         form = VLANForm(instance=vlan)
 

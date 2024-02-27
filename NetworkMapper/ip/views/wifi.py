@@ -13,7 +13,7 @@ def create(request):
         form = WifiForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("wifi.index")  # Redirect to the VLAN Index after successful creation
+            return redirect("wifi.index")
     else:
         form = WifiForm()
 
@@ -27,7 +27,7 @@ def edit(request, id: int):
         form = WifiForm(request.POST, instance=wifi)
         if form.is_valid():
             form.save()
-            return redirect("wifi.index")  # Redirect to the VLAN Index after successful edit
+            return redirect("wifi.index")
     else:
         form = WifiForm(instance=wifi)
 

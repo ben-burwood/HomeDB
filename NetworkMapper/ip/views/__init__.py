@@ -1,1 +1,1 @@
-from . import vlan, wifi
+from . import device, vlan, wifi
