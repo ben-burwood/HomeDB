@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create VLAN</title>
+</head>
+<body>
+
+<h1>Create VLAN</h1>
+
+<form method="post" action="{% url 'vlan.create' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create VLAN</button>
+</form>
+
+<a href="{% url 'vlan.index' %}">Back to VLAN List</a>
+
+</body>
+</html>
