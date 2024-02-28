@@ -3,6 +3,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path("", views.index.index, name="index"),
     path("vlan", views.vlan.index, name="vlan.index"),
     path("vlan/create", views.vlan.create, name="vlan.create"),
     path("vlan/<int:vlan_id>/edit", views.vlan.edit, name="vlan.edit"),
