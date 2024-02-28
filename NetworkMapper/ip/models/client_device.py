@@ -3,6 +3,7 @@ from django.db import models
 from .vlan import VLAN
 from .wifi import WifiNetwork
 
+
 class ClientDevice(models.Model):
     CONNECTION_TYPES = (
         ("ethernet", "Ethernet"),
