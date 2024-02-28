@@ -14,11 +14,11 @@ IP Network Management
             <h2>Base IP</h2>
             <form method="post" action="{% url 'index' %}">
                 {% csrf_token %}
-                <div class="form-group">
+                <div class="form-group d-flex">
                     <label for="base_ip">Base IP:</label>
-                    <input type="text" class="form-control" id="base_ip" name="base_ip" value="{{ base_ip }}">
+                    <input type="text" id="base_ip" name="base_ip" value="{{ base_ip }}" class="form-control">
+                    <button type="submit" name="base_ip-submit" class="btn btn-primary">Save</button>
                 </div>
-                <button type="submit" name="base_ip-submit" class="btn btn-primary">Save Base IP</button>
             </form>
         </div>
 
@@ -26,11 +26,11 @@ IP Network Management
             <h2>Route IP</h2>
             <form method="post" action="{% url 'index' %}">
                 {% csrf_token %}
-                <div class="form-group">
+                <div class="form-group d-flex">
                     <label for="router_ip">Router IP:</label>
-                    <input type="text" class="form-control" id="router_ip" name="router_ip" value="{{ router_ip }}">
+                    <input type="text" id="router_ip" name="router_ip" value="{{ router_ip }}" class="form-control">
+                    <button type="submit" name="router_ip-submit" class="btn btn-primary">Save</button>
                 </div>
-                <button type="submit" name="router_ip-submit" class="btn btn-primary">Save Route IP</button>
             </form>
         </div>
     </div>
