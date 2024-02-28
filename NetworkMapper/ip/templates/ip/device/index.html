@@ -8,11 +8,12 @@
 
 {% block content %}
 
-<a href="{% url 'device.create' %}">Create Device</a>
+
+<a href="{% url 'device.create' %}" class="btn btn-primary">Create Device</a>
 
 <h1>Device List</h1>
 
-<table border="1">
+<table class="table" border="1">
     <thead>
         <tr>
             <th>Name</th>
