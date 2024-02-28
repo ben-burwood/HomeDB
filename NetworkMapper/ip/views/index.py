@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-from ..utils.config import get_config_value, update_config_value
+from utils.config import get_config_value, update_config_value
+
 
 def index(request):
     if request.method == "POST":
