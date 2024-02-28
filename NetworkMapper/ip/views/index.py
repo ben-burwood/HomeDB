@@ -1,17 +1,7 @@
-import yaml
-from django.conf import settings
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-
-def update_config_value(key: str, value: str) -> None:
-    with open(settings.CONFIG_FILE_PATH, "r+") as yaml_file:
-        yaml_data = yaml.safe_load(yaml_file) or {}
-        yaml_data[key] = value
-        yaml_file.seek(0)
-        yaml.dump(yaml_data, yaml_file)
-        yaml_file.truncate()
-
+from ..utils.config import get_config_value, update_config_value
 
 def index(request):
     if request.method == "POST":
@@ -24,9 +14,7 @@ def index(request):
             update_config_value("router_ip", router_ip)
             return redirect(reverse("index"))
 
-    with open(settings.CONFIG_FILE_PATH, "r") as yaml_file:
-        yaml_data = yaml.safe_load(yaml_file) or {}
-    base_ip = yaml_data.get("base_ip", "0.0")
-    router_ip = yaml_data.get("router_ip", "0.0.0.0")
+    base_ip = get_config_value("base_ip", "0.0")
+    router_ip = get_config_value("router_ip", "0.0.0.0")
 
     return render(request, "ip/index.html", {"base_ip": base_ip, "router_ip": router_ip})
