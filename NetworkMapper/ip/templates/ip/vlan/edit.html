@@ -13,7 +13,7 @@
 <form method="post" action="{% url 'vlan.edit' vlan.vlan_id %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Save Changes</button>
+    <button type="submit" class="btn btn-success">Save Changes</button>
 </form>
 
 <a href="{% url 'vlan.index' %}" class="btn btn-danger">Back to VLAN List</a>
