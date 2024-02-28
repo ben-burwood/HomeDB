@@ -1,6 +1,9 @@
 {% extends "../../base/master.html" %}
 
 
+{% load crispy_forms_tags %}
+
+
 {% block title %}
   Edit WIFI Network - {{ wifi.ssid }}
 {% endblock %}
@@ -12,7 +15,7 @@
 
 <form method="post" action="{% url 'wifi.edit' wifi.id %}">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
     <button type="submit" class="btn btn-success">Save Changes</button>
 </form>
 
