@@ -1,38 +1,35 @@
-{% extends "../../base/master.html" %}
+{% extends "../../base/index.html" %}
 
-
-{% block title %}
-  WiFi List
+{% block title_content %}
+WiFi
 {% endblock %}
 
+{% block header_content %}
+WiFi
+{% endblock %}
 
-{% block content %}
+{% block create_link %}
+{% url 'wifi.create' %}
+{% endblock %}
 
-<a href="{% url 'wifi.create' %}" class="btn btn-primary">Create WIFI Network</a>
+{% block table_head %}
+<tr>
+    <th>SSID</th>
+    <th>Password</th>
+</tr>
+{% endblock %}
 
-<h1>WIFI List</h1>
-
-<table class="table" border="1">
-    <thead>
-        <tr>
-            <th>SSID</th>
-            <th>Password</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for wifi in wifis %}
-            <tr>
-                <td>{{ wifi.ssid }}</td>
-                <td>{{ wifi.password }}</td>
-                <td>
-                    <a href="{% url 'wifi.edit' wifi.id %}">Edit</a>
-                </td>
-                <td>
-                    <a href="{% url 'wifi.delete' wifi.id %}">Delete</a>
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
+{% block table_body %}
+{% for wifi in wifis %}
+<tr>
+    <td>{{ wifi.ssid }}</td>
+    <td>{{ wifi.password }}</td>
+    <td>
+        <a href="{% url 'wifi.edit' wifi.id %}">Edit</a>
+    </td>
+    <td>
+        <a href="{% url 'wifi.delete' wifi.id %}">Delete</a>
+    </td>
+</tr>
+{% endfor %}
 {% endblock %}

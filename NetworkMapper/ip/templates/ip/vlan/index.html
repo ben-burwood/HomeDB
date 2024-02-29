@@ -1,42 +1,39 @@
-{% extends "../../base/master.html" %}
+{% extends "../../base/index.html" %}
 
-
-{% block title %}
-  VLAN List
+{% block title_content %}
+VLAN
 {% endblock %}
 
+{% block header_content %}
+VLAN
+{% endblock %}
 
-{% block content %}
+{% block create_link %}
+{% url 'vlan.create' %}
+{% endblock %}
 
-<a href="{% url 'vlan.create' %}" class="btn btn-primary">Create VLAN</a>
+{% block table_head %}
+<tr>
+    <th>VLAN ID</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Subnet</th>
+</tr>
+{% endblock %}
 
-<h1>VLAN List</h1>
-
-<table class="table" border="1">
-    <thead>
-        <tr>
-            <th>VLAN ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Subnet</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for vlan in vlans %}
-            <tr>
-                <td>{{ vlan.vlan_id }}</td>
-                <td>{{ vlan.name }}</td>
-                <td>{{ vlan.description|default:"N/A" }}</td>
-                <td>{{ vlan.subnet }}</td>
-                <td>
-                    <a href="{% url 'vlan.edit' vlan.vlan_id %}">Edit</a>
-                </td>
-                <td>
-                    <a href="{% url 'vlan.delete' vlan.vlan_id %}">Delete</a>
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
+{% block table_body %}
+{% for vlan in vlans %}
+<tr>
+    <td>{{ vlan.vlan_id }}</td>
+    <td>{{ vlan.name }}</td>
+    <td>{{ vlan.description|default:"N/A" }}</td>
+    <td>{{ vlan.subnet }}</td>
+    <td>
+        <a href="{% url 'vlan.edit' vlan.vlan_id %}">Edit</a>
+    </td>
+    <td>
+        <a href="{% url 'vlan.delete' vlan.vlan_id %}">Delete</a>
+    </td>
+</tr>
+{% endfor %}
 {% endblock %}
