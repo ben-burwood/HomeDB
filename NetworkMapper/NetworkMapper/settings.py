@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 from .config import CONFIG_FILE_NAME, generate_config_file
@@ -34,6 +35,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "ip.apps.IpConfig",
+    "mqtt.apps.MqttConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -59,7 +61,9 @@ ROOT_URLCONF = "NetworkMapper.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            os.path.join(BASE_DIR, "common/templates"),
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

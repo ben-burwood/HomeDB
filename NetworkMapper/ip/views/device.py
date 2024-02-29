@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from ..forms import ClientDeviceForm
 from ..models import ClientDevice, VLAN, WifiNetwork
 
+
 def index(request):
     devices = ClientDevice.objects.all()
     return render(request, "ip/device/index.html", {"devices": devices})

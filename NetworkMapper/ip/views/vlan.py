@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from ..forms import VLANForm
 from ..models import VLAN
 
+
 def index(request):
     vlans = VLAN.objects.all()
     return render(request, "ip/vlan/index.html", {"vlans": vlans})
