@@ -1,24 +1,17 @@
-{% extends "../../base/master.html" %}
+{% extends "../../base/crud.html" %}
 
-
-{% load crispy_forms_tags %}
-
-
-{% block title %}
-  Create VLAN
+{% block title_content %}
+Create VLAN
 {% endblock %}
 
+{% block header_content %}
+Create VLAN
+{% endblock %}
 
-{% block content %}
+{% block form_action %}
+{% url 'vlan.create' %}
+{% endblock %}
 
-<h1>Create VLAN</h1>
-
-<form method="post" action="{% url 'vlan.create' %}">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button type="submit" class="btn btn-success">Create</button>
-</form>
-
-<a href="{% url 'vlan.index' %}" class="btn btn-danger">Back to VLAN List</a>
-
+{% block back_link %}
+{% url 'vlan.index' %}
 {% endblock %}

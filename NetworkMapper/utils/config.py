@@ -3,6 +3,7 @@ from typing import Any
 import yaml
 from django.conf import settings
 
+
 def get_config_value(key: str, default: Any) -> str:
     with open(settings.CONFIG_FILE_PATH, "r") as yaml_file:
         yaml_data = yaml.safe_load(yaml_file) or {}

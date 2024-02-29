@@ -9,8 +9,8 @@ IP Network Management
 {% block content %}
 
 <div class="container mt-5">
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
             <h2>Base IP</h2>
             <form method="post" action="{% url 'index' %}">
                 {% csrf_token %}
@@ -22,7 +22,7 @@ IP Network Management
             </form>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-5">
             <h2>Route IP</h2>
             <form method="post" action="{% url 'index' %}">
                 {% csrf_token %}

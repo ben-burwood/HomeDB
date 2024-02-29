@@ -20,7 +20,7 @@ class ClientDeviceForm(forms.ModelForm):
 
     class Meta:
         model = ClientDevice
-        fields = ["name", "mac_address", "ip_address", "wifi", "vlan", "connection_type"]
+        fields = ["name", "mac_address", "vlan", "ip_address", "connection_type", "wifi"]
 
     def __init__(self, *args, vlan_options=None, wifi_options=None, **kwargs):
         super(ClientDeviceForm, self).__init__(*args, **kwargs)
@@ -31,3 +31,13 @@ class ClientDeviceForm(forms.ModelForm):
 
         self.fields["wifi"].widget = forms.Select(choices=empty_choice + wifi_options, attrs={"class": "form-control"})
         self.fields["wifi"].required = False
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        connection_type = cleaned_data.get("connection_type")
+        wifi = cleaned_data.get("wifi")
+        if connection_type == "ethernet" and wifi:
+            raise forms.ValidationError("WiFi must be null for Ethernet Connections", code="invalid")
+
+        return cleaned_data
