@@ -1,6 +1,6 @@
 import os
 
-CONFIG_FILE_NAME = "config.yaml"
+CONFIG_FILE_NAME = "data.yaml"
 
 
 def generate_config_file(filepath):

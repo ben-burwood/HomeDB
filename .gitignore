@@ -16,4 +16,4 @@ venv/
 
 # Databases
 *.sqlite3
-config.yaml
+data.yaml
