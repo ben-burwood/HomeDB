@@ -2,6 +2,7 @@ from django import forms
 
 from .models import ClientDevice, VLAN, WifiNetwork
 
+
 class VLANForm(forms.ModelForm):
     class Meta:
         model = VLAN
@@ -39,5 +40,7 @@ class ClientDeviceForm(forms.ModelForm):
         wifi = cleaned_data.get("wifi")
         if connection_type == "ethernet" and wifi:
             raise forms.ValidationError("WiFi must be null for Ethernet Connections", code="invalid")
+        if connection_type == "wifi" and not wifi:
+            raise forms.ValidationError("WiFi must be set for WiFi Connections", code="invalid")
 
         return cleaned_data
