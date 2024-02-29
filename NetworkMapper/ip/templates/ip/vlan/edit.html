@@ -1,24 +1,17 @@
-{% extends "../../base/master.html" %}
+{% extends "../../base/crud.html" %}
 
-
-{% load crispy_forms_tags %}
-
-
-{% block title %}
-  Edit VLAN
+{% block title_content %}
+Edit VLAN
 {% endblock %}
 
+{% block header_content %}
+Edit VLAN - {{ vlan.name }}
+{% endblock %}
 
-{% block content %}
+{% block form_action %}
+{% url 'vlan.edit' vlan.vlan_id %}
+{% endblock %}
 
-<h1>Edit VLAN - {{ vlan.name }}</h1>
-
-<form method="post" action="{% url 'vlan.edit' vlan.vlan_id %}">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button type="submit" class="btn btn-success">Save Changes</button>
-</form>
-
-<a href="{% url 'vlan.index' %}" class="btn btn-danger">Back to VLAN List</a>
-
+{% block back_link %}
+{% url 'vlan.index' %}
 {% endblock %}

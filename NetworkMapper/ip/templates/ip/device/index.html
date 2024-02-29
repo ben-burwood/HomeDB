@@ -1,47 +1,43 @@
-{% extends "../../base/master.html" %}
+{% extends "../../base/index.html" %}
 
-
-{% block title %}
-  Device List
+{% block title_content %}
+Devices
 {% endblock %}
 
+{% block header_content %}
+Devices
+{% endblock %}
 
-{% block content %}
+{% block create_link %}
+{% url 'device.create' %}
+{% endblock %}
 
+{% block table_head %}
+<tr>
+    <th>Name</th>
+    <th>MAC Address</th>
+    <th>IP Address</th>
+    <th>VLAN</th>
+    <th>Wifi Network</th>
+    <th>Connection</th>
+</tr>
+{% endblock %}
 
-<a href="{% url 'device.create' %}" class="btn btn-primary">Create Device</a>
-
-<h1>Device List</h1>
-
-<table class="table" border="1">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>MAC Address</th>
-            <th>IP Address</th>
-            <th>VLAN</th>
-            <th>Wifi Network</th>
-            <th>Connection</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for device in devices %}
-            <tr>
-                <td>{{ device.name }}</td>
-                <td>{{ device.mac_address }}</td>
-                <td>{{ device.ip_address }}</td>
-                <td>{{ device.vlan }}</td>
-                <td>{{ device.wifi.ssid }}</td>
-                <td>{{ device.connection_type }}</td>
-                <td>
-                    <a href="{% url 'device.edit' device.id %}">Edit</a>
-                </td>
-                <td>
-                    <a href="{% url 'device.delete' device.id %}">Delete</a>
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
+{% block table_body %}
+{% for device in devices %}
+<tr>
+    <td>{{ device.name }}</td>
+    <td>{{ device.mac_address }}</td>
+    <td>{{ device.ip_address }}</td>
+    <td>{{ device.vlan }}</td>
+    <td>{{ device.wifi.ssid }}</td>
+    <td>{{ device.connection_type }}</td>
+    <td>
+        <a href="{% url 'device.edit' device.id %}">Edit</a>
+    </td>
+    <td>
+        <a href="{% url 'device.delete' device.id %}">Delete</a>
+    </td>
+</tr>
+{% endfor %}
 {% endblock %}
