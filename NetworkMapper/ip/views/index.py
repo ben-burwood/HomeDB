@@ -1,7 +1,6 @@
+from common.utils.config import get_config_value, update_config_value
 from django.shortcuts import redirect, render
 from django.urls import reverse
-
-from utils.config import get_config_value, update_config_value
 
 
 def index(request):
