@@ -1,6 +1,12 @@
 from django import forms
 
 from .models import ClientDevice, VLAN, WifiNetwork
+from .models.ip import IpRange
+
+class IpRangeForm(forms.Form):
+    class Meta:
+        model = IpRange
+        fields = ["start_address", "end_address", "num_addresses", "description"]
 
 
 class VLANForm(forms.ModelForm):
