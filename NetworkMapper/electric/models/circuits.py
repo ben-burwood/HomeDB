@@ -1,7 +1,5 @@
+from common.utils.config import get_config_value
 from django.db import models
-
-
-VOLTAGE = 240
 
 
 class Circuit(models.Model):
@@ -30,7 +28,7 @@ class Circuit(models.Model):
 
     @property
     def power_rating(self) -> float:
-        return self.current_rating * VOLTAGE
+        return self.current_rating * get_config_value("voltage", 0)
 
     def __str__(self):
         return self.name
