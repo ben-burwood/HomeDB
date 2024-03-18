@@ -1,0 +1,17 @@
+{% extends "base/crud.html" %}
+
+{% block title_content %}
+Create Circuit
+{% endblock %}
+
+{% block header_content %}
+Create Circuit
+{% endblock %}
+
+{% block form_action %}
+{% url 'circuit.create' %}
+{% endblock %}
+
+{% block back_link %}
+{% url 'circuit.index' %}
+{% endblock %}
