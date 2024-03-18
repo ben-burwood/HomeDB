@@ -14,7 +14,7 @@ class Circuit(models.Model):
 
     CIRCUIT_TYPES = (
         ("lighting", "Lighting"),
-        ("outlet", "Outlet"),
+        ("outlet", "Outlets"),
         ("appliance", "Appliance"),
         ("heating", "Heating"),
         ("cooling", "Cooling"),
