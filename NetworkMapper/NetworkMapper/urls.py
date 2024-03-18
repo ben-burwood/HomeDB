@@ -22,4 +22,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("ip/", include("ip.urls")),
     path("mqtt/", include("mqtt.urls")),
+    path("electric/", include("electric.urls")),
 ]
