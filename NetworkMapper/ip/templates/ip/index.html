@@ -12,7 +12,7 @@ IP Network Management
     <div class="row justify-content-center">
         <div class="col-md-5">
             <h2>Base IP</h2>
-            <form method="post" action="{% url 'index' %}">
+            <form method="post" action="{% url 'ip_index' %}">
                 {% csrf_token %}
                 <div class="form-group d-flex">
                     <label for="base_ip">Base IP:</label>
@@ -24,7 +24,7 @@ IP Network Management
 
         <div class="col-md-5">
             <h2>Route IP</h2>
-            <form method="post" action="{% url 'index' %}">
+            <form method="post" action="{% url 'ip_index' %}">
                 {% csrf_token %}
                 <div class="form-group d-flex">
                     <label for="router_ip">Router IP:</label>
