@@ -1,0 +1,27 @@
+{% extends "base/master.html" %}
+
+
+{% block title %}
+Electric
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <h2>Voltage</h2>
+            <form method="post" action="{% url 'electric_index' %}">
+                {% csrf_token %}
+                <div class="form-group d-flex">
+                    <label for="voltage">Voltage:</label>
+                    <input type="text" id="voltage" name="voltage" value="{{ voltage }}" class="form-control">
+                    <button type="submit" name="voltage-submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

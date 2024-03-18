@@ -20,6 +20,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("ip/", include("ip.urls")),
-    path("mqtt/", include("mqtt.urls")),
+    path("ip/", include("ip.urls"), name="ip"),
+    path("mqtt/", include("mqtt.urls"), name="mqtt"),
+    path("electric/", include("electric.urls"), name="electric"),
 ]

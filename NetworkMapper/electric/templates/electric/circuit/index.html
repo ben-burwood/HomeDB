@@ -1,0 +1,33 @@
+{% extends "base/index.html" %}
+
+{% block title_content %}
+Circuits
+{% endblock %}
+
+{% block header_content %}
+Circuits
+{% endblock %}
+
+{% block create_link %}
+{% url 'circuit.create' %}
+{% endblock %}
+
+{% block table_head %}
+<tr>
+    <th>Circuit</th>
+</tr>
+{% endblock %}
+
+{% block table_body %}
+{% for circuit in circuits %}
+<tr>
+    <td>{{ circuit.name }}</td>
+    <td>
+        <a href="{% url 'circuit.edit' circuit.id %}">Edit</a>
+    </td>
+    <td>
+        <a href="{% url 'circuit.delete' circuit.id %}">Delete</a>
+    </td>
+</tr>
+{% endfor %}
+{% endblock %}

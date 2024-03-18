@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "ip.apps.IpConfig",
     "mqtt.apps.MqttConfig",
+    "electric.apps.ElectricConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

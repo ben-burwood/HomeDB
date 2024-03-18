@@ -1,0 +1,17 @@
+{% extends "base/crud.html" %}
+
+{% block title_content %}
+Edit Circuit
+{% endblock %}
+
+{% block header_content %}
+Edit Circuit - {{ circuit.name }}
+{% endblock %}
+
+{% block form_action %}
+{% url 'circuit.edit' circuit.id %}
+{% endblock %}
+
+{% block back_link %}
+{% url 'circuit.index' %}
+{% endblock %}
