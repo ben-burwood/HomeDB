@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from ..forms import CircuitForm
 from ..models.circuits import Circuit
 
+
 def index(request):
     circuits = Circuit.objects.all()
     return render(request, "electric/circuit/index.html", {"circuits": circuits})
