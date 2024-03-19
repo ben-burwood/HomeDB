@@ -6,7 +6,7 @@ from ..models import WifiNetwork
 
 def index(request):
     wifis = WifiNetwork.objects.all()
-    return render(request, "ip/wifi/index.html", {"wifis": wifis})
+    return render(request, "network/wifi/index.html", {"wifis": wifis})
 
 
 def create(request):
@@ -18,7 +18,7 @@ def create(request):
     else:
         form = WifiForm()
 
-    return render(request, "ip/wifi/create.html", {"form": form})
+    return render(request, "network/wifi/create.html", {"form": form})
 
 
 def edit(request, id: int):
@@ -32,7 +32,7 @@ def edit(request, id: int):
     else:
         form = WifiForm(instance=wifi)
 
-    return render(request, "ip/wifi/edit.html", {"form": form, "wifi": wifi})
+    return render(request, "network/wifi/edit.html", {"form": form, "wifi": wifi})
 
 
 def delete(request, id: int):

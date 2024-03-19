@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class IpConfig(AppConfig):
+class NetworkConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "ip"
+    name = "network"

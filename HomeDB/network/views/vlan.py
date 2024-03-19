@@ -6,7 +6,7 @@ from ..models import VLAN
 
 def index(request):
     vlans = VLAN.objects.all()
-    return render(request, "ip/vlan/index.html", {"vlans": vlans})
+    return render(request, "network/vlan/index.html", {"vlans": vlans})
 
 
 def create(request):
@@ -18,7 +18,7 @@ def create(request):
     else:
         form = VLANForm()
 
-    return render(request, "ip/vlan/create.html", {"form": form})
+    return render(request, "network/vlan/create.html", {"form": form})
 
 
 def edit(request, vlan_id: int):
@@ -32,7 +32,7 @@ def edit(request, vlan_id: int):
     else:
         form = VLANForm(instance=vlan)
 
-    return render(request, "ip/vlan/edit.html", {"form": form, "vlan": vlan})
+    return render(request, "network/vlan/edit.html", {"form": form, "vlan": vlan})
 
 
 def delete(request, vlan_id: int):

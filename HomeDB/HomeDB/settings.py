@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "ip.apps.IpConfig",
+    "network.apps.NetworkConfig",
     "mqtt.apps.MqttConfig",
     "electric.apps.ElectricConfig",
     "django.contrib.admin",

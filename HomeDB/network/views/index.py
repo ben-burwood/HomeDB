@@ -17,4 +17,4 @@ def index(request):
     base_ip = get_config_value("base_ip", "0.0")
     router_ip = get_config_value("router_ip", "0.0.0.0")
 
-    return render(request, "ip/index.html", {"base_ip": base_ip, "router_ip": router_ip})
+    return render(request, "network/index.html", {"base_ip": base_ip, "router_ip": router_ip})

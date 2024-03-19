@@ -6,7 +6,7 @@ from ..models import ClientDevice, VLAN, WifiNetwork
 
 def index(request):
     devices = ClientDevice.objects.all()
-    return render(request, "ip/device/index.html", {"devices": devices})
+    return render(request, "network/device/index.html", {"devices": devices})
 
 
 def create(request):
@@ -21,7 +21,7 @@ def create(request):
     else:
         form = ClientDeviceForm(vlan_options=vlan_options, wifi_options=wifi_options)
 
-    return render(request, "ip/device/create.html", {"form": form})
+    return render(request, "network/device/create.html", {"form": form})
 
 
 def edit(request, id: int):
@@ -38,7 +38,7 @@ def edit(request, id: int):
     else:
         form = ClientDeviceForm(instance=device, vlan_options=vlan_options, wifi_options=wifi_options)
 
-    return render(request, "ip/device/edit.html", {"form": form, "device": device})
+    return render(request, "network/device/edit.html", {"form": form, "device": device})
 
 
 def delete(request, id: int):
