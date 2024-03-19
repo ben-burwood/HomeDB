@@ -4,10 +4,11 @@ from django.db import models
 
 class Circuit(models.Model):
     BREAKER_TYPES = (
-        ("fuse", "Fuse"),
-        ("mcb", "MCB"),
-        ("rcd", "RCD"),
-        ("gfci", "GFCI"),
+        ("fuse", "Fuse"),  # Fuse
+        ("mcb", "MCB"),  # Miniature Circuit Breaker
+        ("rcd", "RCD"),  # Residual Current Device
+        {"rcbo", "RCBO"},  # Residual Current Breaker with Overload
+        ("gfci", "GFCI"),  # Ground Fault Circuit Interrupter
     )
 
     CIRCUIT_TYPES = (
@@ -19,7 +20,7 @@ class Circuit(models.Model):
     )
 
     name = models.CharField(max_length=100)
-    current_rating = models.IntegerField()
+    current_rating = models.PositiveIntegerField()
     breaker_type = models.CharField(max_length=10, choices=BREAKER_TYPES)
     spd_protection = models.BooleanField()  # Surge Protection Device
     wire_diameter = models.FloatField()

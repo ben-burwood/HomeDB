@@ -1,3 +1,6 @@
+import re
+
+from django.core.exceptions import ValidationError
 from django.db import models
 
 from .vlan import VLAN
@@ -19,3 +22,14 @@ class ClientDevice(models.Model):
 
     def __str__(self):
         return self.name
+
+    def clean(self):
+        super().clean()
+
+        if not self.mac_address_validation(self.mac_address):
+            raise ValidationError("Invalid MAC Address format")
+
+    @staticmethod
+    def mac_address_validation(mac_address: str) -> bool:
+        MAC_ADDRESS_PATTERN = r"^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})|([0-9a-fA-F]{4}\.[0-9a-fA-F]{4}\.[0-9a-fA-F]{4})$"
+        return re.match(MAC_ADDRESS_PATTERN, mac_address) is not None
