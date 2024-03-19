@@ -1,10 +1,15 @@
 <div class="sidebar">
     <ul class="list-unstyled mt-4">
         <li><a href="{% url 'circuit.index' %}">Circuits</a></li>
-        <li><a href="{% url 'ip_index' %}">LAN</a></li>
-        <li><a href="{% url 'vlan.index' %}">VLAN</a></li>
-        <li><a href="{% url 'wifi.index' %}">WiFi</a></li>
-        <li><a href="{% url 'device.index' %}">Devices</a></li>
+         <li class="collapsible">
+            <a class="sidebar-group" onclick="toggleSubLinks('lanLinks')">Network</a>
+            <ul id="lanLinks" class="sub-links">
+                <li><a href="{% url 'network_index' %}">Network</a></li>
+                <li><a href="{% url 'vlan.index' %}">VLAN</a></li>
+                <li><a href="{% url 'wifi.index' %}">WiFi</a></li>
+                <li><a href="{% url 'device.index' %}">Devices</a></li>
+            </ul>
+        </li>
         <li><a href="{% url 'mqtt_index' %}">MQTT</a></li>
     </ul>
 </div>
@@ -28,4 +33,37 @@
     .sidebar a:hover{
         color:#f1f1f1;
     }
+
+    .sidebar-group {
+        padding:6px 8px 6px 16px;
+        text-decoration: none;
+        font-size:25px;
+        color: #C6D9FC;
+        display:block;
+    }
+
+    .sidebar-group:hover{
+        color:#f1f1f1;
+    }
+
+    .sub-links {
+        display: none;
+        list-style: none;
+        padding-left: 20px;
+    }
+
+    .sub-links li {
+        margin-top: 5px;
+    }
 </style>
+
+<script>
+    function toggleSubLinks(id) {
+        var subLinks = document.getElementById(id);
+        if (subLinks.style.display === "none") {
+            subLinks.style.display = "block";
+        } else {
+            subLinks.style.display = "none";
+        }
+    }
+</script>
