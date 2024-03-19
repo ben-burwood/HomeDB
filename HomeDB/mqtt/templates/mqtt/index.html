@@ -8,6 +8,32 @@ MQTT Management
 
 {% block content %}
 
-MQTT
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <h2>Broker IP</h2>
+            <form method="post" action="{% url 'mqtt_index' %}">
+                {% csrf_token %}
+                <div class="form-group d-flex">
+                    <label for="broker_ip">Broker IP:</label>
+                    <input type="text" id="broker_ip" name="broker_ip" value="{{ broker_ip }}" class="form-control">
+                    <button type="submit" name="broker_ip-submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-5">
+            <h2>Broker Port</h2>
+            <form method="post" action="{% url 'mqtt_index' %}">
+                {% csrf_token %}
+                <div class="form-group d-flex">
+                    <label for="broker_port">Broker Port:</label>
+                    <input type="number" id="broker_port" name="broker_port" value="{{ broker_port }}" min="0" class="form-control">
+                    <button type="submit" name="broker_port-submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
