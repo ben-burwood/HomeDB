@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "home.apps.HomeConfig",
     "network.apps.NetworkConfig",
     "mqtt.apps.MqttConfig",
     "electric.apps.ElectricConfig",
