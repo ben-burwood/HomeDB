@@ -13,7 +13,11 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 from .config import CONFIG_FILE_NAME, generate_config_file
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,9 +32,9 @@ CONFIG_FILE_PATH = STORAGE_FILE_PATH / CONFIG_FILE_NAME
 SECRET_KEY = "django-insecure-hz91g*^9zh5br)#8%dgv+8r4b7nh#7*nvvn$yr=@dsjb4!&k37"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '172.30.32.2', 'homeassistant.local', 'homeassistant.iot']
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",") if os.getenv("ALLOWED_HOSTS") else []
 
 # Application definition
 
