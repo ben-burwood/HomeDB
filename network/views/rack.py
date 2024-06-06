@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 
 from ..forms import RackForm, RackItemForm
-from ..models import Rack, RackItem
+from ..models import NetworkDevice, Rack, RackItem
 
 def index(request):
     racks = Rack.objects.all()
@@ -27,13 +27,16 @@ def create_rack(request):
 
 
 def create_rack_item(request):
+    racks = Rack.objects.all()
+    network_devices = NetworkDevice.objects.all()
+
     if request.method == "POST":
-        form = RackItemForm(request.POST)
+        form = RackItemForm(request.POST, racks=racks, network_devices=network_devices)
         if form.is_valid():
             form.save()
             return redirect("rack_item.index")
     else:
-        form = RackItemForm()
+        form = RackItemForm(racks=racks, network_devices=network_devices)
 
     return render(request, "network/rack_item/create_item.html", {"form": form})
 
@@ -55,13 +58,16 @@ def edit_rack(request, rack_id: int):
 def edit_rack_item(request, rack_item_id: int):
     rack_item = get_object_or_404(RackItem, rack_item_id=rack_item_id)
 
+    racks = Rack.objects.all()
+    network_devices = NetworkDevice.objects.all()
+
     if request.method == "POST":
-        form = RackItemForm(request.POST, instance=rack_item)
+        form = RackItemForm(request.POST, instance=rack_item, racks=racks, network_devices=network_devices)
         if form.is_valid():
             form.save()
             return redirect("rack_item.index")
     else:
-        form = RackItemForm(instance=rack_item)
+        form = RackItemForm(instance=rack_item, racks=racks, network_devices=network_devices)
 
     return render(request, "network/rack_item/edit_item.html", {"form": form, "rack_item": rack_item})
 

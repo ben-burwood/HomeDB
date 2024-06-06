@@ -92,9 +92,11 @@ class RackItemForm(forms.Form):
 
     class Meta:
         model = RackItem
-        fields = ["name", "rack_units", "rack"]
+        fields = ["name", "rack_units", "rack", "device"]
 
-    def __init__(self, *args, rack_options=None, **kwargs):
+    def __init__(self, *args, rack_options=None, device_options=None, **kwargs):
         super(RackItemForm, self).__init__(*args, **kwargs)
 
         self.fields["rack"].widget = forms.Select(choices=rack_options, attrs={"class": "form-control"})
+
+        self.fields["device"].widget = forms.Select(choices=device_options, attrs={"class": "form-control"})

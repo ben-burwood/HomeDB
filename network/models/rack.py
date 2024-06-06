@@ -2,6 +2,8 @@ from enum import Enum
 
 from django.db import models
 
+from network.models import NetworkDevice
+
 RACK_UNIT_HEIGHT = 44.45  # 1U = 44.45mm
 
 
@@ -42,6 +44,7 @@ class RackItem(models.Model):
     name = models.CharField(max_length=50)
     rack_units = models.FloatField()
     rack = models.ForeignKey(Rack, on_delete=models.CASCADE, related_name="rack_items")
+    device = models.OneToOneField(NetworkDevice, on_delete=models.CASCADE, blank=True, null=True, related_name="rack_item")
 
     @property
     def height(self) -> float:
