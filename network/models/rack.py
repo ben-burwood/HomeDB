@@ -15,15 +15,15 @@ class RackWidth(int, Enum):
         """Width of the Rack in Inches"""
         return self.value
 
-    @property
-    def choices(self) -> list[tuple[int, str]]:
+    @classmethod
+    def choices(cls) -> list[tuple[int, str]]:
         """Choices for the Rack Width"""
-        return [(width.value, width.name) for width in RackWidth]
+        return [(width.value, width.name) for width in cls]
 
 
 class Rack(models.Model):
     name = models.CharField(max_length=50)
-    width = models.PositiveIntegerField(choices=RackWidth.choices)
+    width = models.PositiveIntegerField(choices=RackWidth.choices())
     rack_units = models.FloatField()
 
     @property
@@ -50,7 +50,5 @@ class RackItem(models.Model):
 
     def save(self, *args, **kwargs):
         if self.rack_units > self.rack.remaining_units:
-            raise ValueError(
-                f"Not enough space in Rack {self.rack.name} for this RackItem {self.name}"
-            )
+            raise ValueError(f"Not enough space in Rack {self.rack.name} for this RackItem {self.name}")
         super().save(*args, **kwargs)
