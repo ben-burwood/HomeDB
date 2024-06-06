@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import ClientDevice, VLAN, WifiNetwork
+from .models import ClientDevice, Rack, RackItem, VLAN, WifiNetwork
 from .models.ip import IpRange
 
 class IpRangeForm(forms.Form):
@@ -29,11 +29,21 @@ class WifiForm(forms.ModelForm):
 
 class ClientDeviceForm(forms.ModelForm):
 
-    connection_type = forms.ChoiceField(choices=ClientDevice.CONNECTION_TYPES, widget=forms.Select(attrs={"class": "form-control"}))
+    connection_type = forms.ChoiceField(
+        choices=ClientDevice.CONNECTION_TYPES,
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
 
     class Meta:
         model = ClientDevice
-        fields = ["name", "mac_address", "vlan", "ip_address", "connection_type", "wifi"]
+        fields = [
+            "name",
+            "mac_address",
+            "vlan",
+            "ip_address",
+            "connection_type",
+            "wifi",
+        ]
 
     def __init__(self, *args, vlan_options=None, wifi_options=None, **kwargs):
         super(ClientDeviceForm, self).__init__(*args, **kwargs)
@@ -56,3 +66,22 @@ class ClientDeviceForm(forms.ModelForm):
             raise forms.ValidationError("WiFi must be set for WiFi Connections", code="invalid")
 
         return cleaned_data
+
+
+class RackForm(forms.Form):
+
+    class Meta:
+        model = Rack
+        fields = ["name", "width", "rack_units"]
+
+
+class RackItemForm(forms.Form):
+
+    class Meta:
+        model = RackItem
+        fields = ["name", "rack_units", "rack"]
+
+    def __init__(self, *args, rack_options=None, **kwargs):
+        super(RackItemForm, self).__init__(*args, **kwargs)
+
+        self.fields["rack"].widget = forms.Select(choices=rack_options, attrs={"class": "form-control"})
