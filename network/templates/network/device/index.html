@@ -9,7 +9,7 @@ Devices
 {% endblock %}
 
 {% block create_link %}
-{% url 'device.create' %}
+{% url 'client_device.create' %}
 {% endblock %}
 
 {% block table_head %}
@@ -33,10 +33,10 @@ Devices
     <td>{{ device.wifi.ssid }}</td>
     <td>{{ device.connection_type }}</td>
     <td>
-        <a href="{% url 'device.edit' device.id %}">Edit</a>
+        <a href="{% url 'client_device.edit' device.id %}">Edit</a>
     </td>
     <td>
-        <a href="{% url 'device.delete' device.id %}">Delete</a>
+        <a href="{% url 'client_device.delete' device.id %}">Delete</a>
     </td>
 </tr>
 {% endfor %}
