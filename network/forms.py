@@ -81,14 +81,14 @@ class NetworkDeviceForm(DeviceForm):
         fields = DeviceForm.Meta.fields + ["device_type"]
 
 
-class RackForm(forms.Form):
+class RackForm(forms.ModelForm):
 
     class Meta:
         model = Rack
         fields = ["name", "width", "rack_units"]
 
 
-class RackItemForm(forms.Form):
+class RackItemForm(forms.ModelForm):
 
     class Meta:
         model = RackItem

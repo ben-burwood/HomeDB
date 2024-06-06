@@ -63,6 +63,7 @@ urlpatterns = [
                 path("create", views.rack.create_rack, name="rack.create"),
                 path("<int:id>/edit", views.rack.edit_rack, name="rack.edit"),
                 path("<int:id>/delete", views.rack.delete_rack, name="rack.delete"),
+                path("<int:rack_id>/items", views.rack.rack_index, name="rack_item.index"),
             ]
         ),
     ),
@@ -70,7 +71,6 @@ urlpatterns = [
         "rack-item/",
         include(
             [
-                path("", views.rack.rack_index, name="rack_item.index"),
                 path("create", views.rack.create_rack_item, name="rack_item.create"),
                 path("<int:id>/edit", views.rack.edit_rack_item, name="rack_item.edit"),
                 path("<int:id>/delete", views.rack.delete_rack_item, name="rack_item.delete"),
