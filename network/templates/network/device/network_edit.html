@@ -1,17 +1,17 @@
 {% extends "base/crud.html" %}
 
 {% block title_content %}
-Edit Client Device
+Edit Device
 {% endblock %}
 
 {% block header_content %}
-Edit Client Device - {{ device.name }}
+Edit Device - {{ device.name }}
 {% endblock %}
 
 {% block form_action %}
-{% url 'client_device.edit' device.id %}
+{% url 'network_device.edit' device.id %}
 {% endblock %}
 
 {% block back_link %}
-{% url 'client_device.index' %}
+{% url 'device.index' %}
 {% endblock %}

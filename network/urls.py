@@ -30,12 +30,12 @@ urlpatterns = [
         "device/",
         include(
             [
+                path("", views.device.index, name="device.index"),
+                path("create", views.device.create, name="device.create"),
                 path(
                     "client/",
                     include(
                         [
-                            path("", views.device.client_index, name="client_device.index"),
-                            path("create", views.device.create_client, name="client_device.create"),
                             path("<int:id>/edit", views.device.edit_client, name="client_device.edit"),
                             path("<int:id>/delete", views.device.delete_client, name="client_device.delete"),
                         ]
@@ -45,8 +45,6 @@ urlpatterns = [
                     "network/",
                     include(
                         [
-                            path("", views.device.network_index, name="network_device.index"),
-                            path("create", views.device.create_network, name="network_device.create"),
                             path("<int:id>/edit", views.device.edit_network, name="network_device.edit"),
                             path("<int:id>/delete", views.device.delete_network, name="network_device.delete"),
                         ]
