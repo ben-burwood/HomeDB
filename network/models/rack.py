@@ -2,6 +2,7 @@ from enum import Enum
 
 from django.db import models
 
+from common.utils.units import mm_to_inch
 from network.models import NetworkDevice
 
 RACK_UNIT_HEIGHT = 44.45  # 1U = 44.45mm
@@ -31,7 +32,12 @@ class Rack(models.Model):
     @property
     def height(self) -> float:
         """Total Unit height of the Rack in mm"""
-        return self.rack_units * RACK_UNIT_HEIGHT
+        return round(self.rack_units * RACK_UNIT_HEIGHT)
+
+    @property
+    def height_inches(self) -> float:
+        """Height of the Rack Item in Inches"""
+        return round(mm_to_inch(self.height), 2)
 
     @property
     def remaining_units(self) -> int:
@@ -49,7 +55,12 @@ class RackItem(models.Model):
     @property
     def height(self) -> float:
         """Height of the Rack Item in mm"""
-        return self.height_units * RACK_UNIT_HEIGHT
+        return round(self.height_units * RACK_UNIT_HEIGHT)
+
+    @property
+    def height_inches(self) -> float:
+        """Height of the Rack Item in Inches"""
+        return round(mm_to_inch(self.height), 2)
 
     def save(self, *args, **kwargs):
         if self.rack_units > self.rack.remaining_units:

@@ -42,7 +42,7 @@ def create_rack_item(request):
 
 
 def edit_rack(request, rack_id: int):
-    rack = get_object_or_404(Rack, rack_id=rack_id)
+    rack = get_object_or_404(Rack, id=rack_id)
 
     if request.method == "POST":
         form = RackForm(request.POST, instance=rack)
@@ -59,7 +59,7 @@ def edit_rack_item(request, rack_item_id: int):
     rack_options = [(rack.id, rack.name) for rack in Rack.objects.all()]
     device_options = [(device.id, device.name) for device in NetworkDevice.objects.all()]
 
-    rack_item = get_object_or_404(RackItem, rack_item_id=rack_item_id)
+    rack_item = get_object_or_404(RackItem, id=rack_item_id)
 
     if request.method == "POST":
         form = RackItemForm(request.POST, instance=rack_item, rack_options=rack_options, device_options=device_options)
@@ -72,13 +72,13 @@ def edit_rack_item(request, rack_item_id: int):
     return render(request, "network/rack_item/edit.html", {"form": form, "rack_item": rack_item})
 
 
-def delete_rack(request, id: int):
-    rack = get_object_or_404(Rack, id=id)
+def delete_rack(request, rack_id: int):
+    rack = get_object_or_404(Rack, id=rack_id)
     rack.delete()
     return redirect("rack.index")
 
 
-def delete_rack_item(request, id: int):
-    rack_item = get_object_or_404(RackItem, id=id)
+def delete_rack_item(request, rack_item_id: int):
+    rack_item = get_object_or_404(RackItem, id=rack_item_id)
     rack_item.delete()
     return redirect("rack_item.index")
