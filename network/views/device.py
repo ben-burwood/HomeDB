@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 
-from ..forms import ClientDeviceForm, NetworkDeviceForm
+from ..forms.devices import ClientDeviceForm, NetworkDeviceForm
 from ..models import ClientDevice, NetworkDevice, VLAN, WifiNetwork
 
 def index(request):

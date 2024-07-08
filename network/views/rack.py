@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 
-from ..forms import RackForm, RackItemForm
+from ..forms.rack import RackForm, RackItemForm
 from ..models import NetworkDevice, Rack, RackItem
 
 def index(request):

@@ -1,8 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 
-from ..forms import VLANForm
+from ..forms.networking import VLANForm
 from ..models import VLAN
-
 
 def index(request):
     vlans = VLAN.objects.all()

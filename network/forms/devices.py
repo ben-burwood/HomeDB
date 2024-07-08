@@ -1,32 +1,8 @@
 from django import forms
 
-from .models import ClientDevice, NetworkDevice, Rack, RackItem, VLAN, WifiNetwork
-from .models.device import ConnectionType, InfrastructureDevice, NetworkedDevice
-from .models.ip import IpRange
-
-class IpRangeForm(forms.Form):
-
-    description = forms.CharField(widget=forms.Textarea(attrs={"style": "height:50px;"}), required=False)
-
-    class Meta:
-        model = IpRange
-        fields = ["start_address", "end_address", "num_addresses", "description"]
-
-
-class VLANForm(forms.ModelForm):
-
-    description = forms.CharField(widget=forms.Textarea(attrs={"style": "height:50px;"}), required=False)
-
-    class Meta:
-        model = VLAN
-        fields = ["vlan_id", "name", "description"]
-
-
-class WifiForm(forms.ModelForm):
-    class Meta:
-        model = WifiNetwork
-        fields = ["ssid", "password"]
-
+from network.models import ClientDevice, NetworkDevice
+from network.models.device import InfrastructureDevice, NetworkedDevice
+from network.objects import ConnectionType
 
 class NetworkedDeviceForm(forms.ModelForm):
 
@@ -69,39 +45,15 @@ class NetworkedDeviceForm(forms.ModelForm):
 
         return cleaned_data
 
-
 class ClientDeviceForm(NetworkedDeviceForm):
     class Meta(NetworkedDeviceForm.Meta):
         model = ClientDevice
-
 
 class NetworkDeviceForm(NetworkedDeviceForm):
     class Meta(NetworkedDeviceForm.Meta):
         model = NetworkDevice
         fields = NetworkedDeviceForm.Meta.fields + ["device_type"]
 
-
 class InfrastructureDeviceForm(NetworkDeviceForm):
     class Meta(NetworkDeviceForm.Meta):
         model = InfrastructureDevice
-
-
-class RackForm(forms.ModelForm):
-
-    class Meta:
-        model = Rack
-        fields = ["name", "width", "rack_units"]
-
-
-class RackItemForm(forms.ModelForm):
-
-    class Meta:
-        model = RackItem
-        fields = ["name", "rack_units", "rack", "device"]
-
-    def __init__(self, *args, rack_options=None, device_options=None, **kwargs):
-        super(RackItemForm, self).__init__(*args, **kwargs)
-
-        self.fields["rack"].widget = forms.Select(choices=rack_options, attrs={"class": "form-control"})
-
-        self.fields["device"].widget = forms.Select(choices=device_options, attrs={"class": "form-control"})
