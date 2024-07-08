@@ -1,7 +1,7 @@
 from django import forms
 
 from .models import ClientDevice, NetworkDevice, Rack, RackItem, VLAN, WifiNetwork
-from .models.device import ConnectionType, Device
+from .models.device import ConnectionType, InfrastructureDevice, NetworkedDevice
 from .models.ip import IpRange
 
 class IpRangeForm(forms.Form):
@@ -28,7 +28,7 @@ class WifiForm(forms.ModelForm):
         fields = ["ssid", "password"]
 
 
-class DeviceForm(forms.ModelForm):
+class NetworkedDeviceForm(forms.ModelForm):
 
     connection_type = forms.ChoiceField(
         choices=ConnectionType.choices(),
@@ -36,7 +36,7 @@ class DeviceForm(forms.ModelForm):
     )
 
     class Meta:
-        model = Device
+        model = NetworkedDevice
         abstract = True
         fields = [
             "name",
@@ -48,7 +48,7 @@ class DeviceForm(forms.ModelForm):
         ]
 
     def __init__(self, *args, vlan_options=None, wifi_options=None, **kwargs):
-        super(DeviceForm, self).__init__(*args, **kwargs)
+        super(NetworkedDeviceForm, self).__init__(*args, **kwargs)
 
         self.fields["vlan"].widget = forms.Select(choices=vlan_options, attrs={"class": "form-control"})
 
@@ -70,15 +70,20 @@ class DeviceForm(forms.ModelForm):
         return cleaned_data
 
 
-class ClientDeviceForm(DeviceForm):
-    class Meta(DeviceForm.Meta):
+class ClientDeviceForm(NetworkedDeviceForm):
+    class Meta(NetworkedDeviceForm.Meta):
         model = ClientDevice
 
 
-class NetworkDeviceForm(DeviceForm):
-    class Meta(DeviceForm.Meta):
+class NetworkDeviceForm(NetworkedDeviceForm):
+    class Meta(NetworkedDeviceForm.Meta):
         model = NetworkDevice
-        fields = DeviceForm.Meta.fields + ["device_type"]
+        fields = NetworkedDeviceForm.Meta.fields + ["device_type"]
+
+
+class InfrastructureDeviceForm(NetworkDeviceForm):
+    class Meta(NetworkDeviceForm.Meta):
+        model = InfrastructureDevice
 
 
 class RackForm(forms.ModelForm):
