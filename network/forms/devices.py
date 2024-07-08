@@ -45,15 +45,19 @@ class NetworkedDeviceForm(forms.ModelForm):
 
         return cleaned_data
 
+
 class ClientDeviceForm(NetworkedDeviceForm):
     class Meta(NetworkedDeviceForm.Meta):
         model = ClientDevice
+
 
 class NetworkDeviceForm(NetworkedDeviceForm):
     class Meta(NetworkedDeviceForm.Meta):
         model = NetworkDevice
         fields = NetworkedDeviceForm.Meta.fields + ["device_type"]
 
-class InfrastructureDeviceForm(NetworkDeviceForm):
-    class Meta(NetworkDeviceForm.Meta):
+
+class InfrastructureDeviceForm(forms.ModelForm):
+    class Meta:
         model = InfrastructureDevice
+        fields = ["name", "device_type"]

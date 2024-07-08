@@ -8,6 +8,7 @@ class RackForm(forms.ModelForm):
         model = Rack
         fields = ["name", "width", "rack_units"]
 
+
 class RackItemForm(forms.ModelForm):
 
     class Meta:

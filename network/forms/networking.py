@@ -11,6 +11,7 @@ class IpRangeForm(forms.Form):
         model = IpRange
         fields = ["start_address", "end_address", "num_addresses", "description"]
 
+
 class VLANForm(forms.ModelForm):
 
     description = forms.CharField(widget=forms.Textarea(attrs={"style": "height:50px;"}), required=False)
@@ -18,6 +19,7 @@ class VLANForm(forms.ModelForm):
     class Meta:
         model = VLAN
         fields = ["vlan_id", "name", "description"]
+
 
 class WifiForm(forms.ModelForm):
     class Meta:
