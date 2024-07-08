@@ -1,0 +1,47 @@
+{% extends "base/index.html" %}
+
+{% block title_content %}
+Racks
+{% endblock %}
+
+{% block header_content %}
+Racks
+{% endblock %}
+
+{% block create_link %}
+{% url 'rack.create' %}
+{% endblock %}
+
+
+{% block table_head %}
+<tr>
+    <th>Name</th>
+    <th>Width (Inch)</th>
+    <th>Height (Inch)</th>
+    <th>Total Units</th>
+    <th>Available Units</th>
+</tr>
+{% endblock %}
+
+{% block table_body %}
+{% for rack in racks %}
+<tr>
+    <td>{{ rack.name }}</td>
+    <td>{{ rack.width }}</td>
+    <td>{{ rack.height_inches }}</td>
+    <td>{{ rack.rack_units }}</td>
+    <td>{{ rack.remaining_units }}</td>
+    <td>
+        <a href="{% url 'rack.view' rack.id %}">
+            <button class="btn btn-info">View</button>
+        </a>
+    </td>
+    <td>
+        <a href="{% url 'rack.edit' rack.id %}">Edit</a>
+    </td>
+    <td>
+        <a href="{% url 'rack.delete' rack.id %}">Delete</a>
+    </td>
+</tr>
+{% endfor %}
+{% endblock %}
