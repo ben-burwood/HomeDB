@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  release:
+    name: Create GitHub Release
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get Version
+        run: |
+          VERSION=$(grep -Po '(?<=version = ")[^"]*' pyproject.toml)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Delete existing release if it exists
+        run: |
+          gh release delete ${{ env.VERSION }} -y || echo "Release does not exist, continuing..."
+
+      - name: Create GitHub Release
+        id: create_release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create ${{ env.VERSION }} --title "HomeDB - v${{ env.VERSION }}" --generate-notes

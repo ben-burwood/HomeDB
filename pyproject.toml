@@ -1,0 +1,14 @@
+[project]
+name = "HomeDB"
+version = "1.0"
+description = "HomeDB is a Database for the Home."
+readme = "README.md"
+authors = [
+    { name = "Ben Burwood", email = "ben.burwood@outlook.com" }
+]
+
+[project.urls]
+Homepage = "https://github.com/ben-burwood/HomeDB"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
