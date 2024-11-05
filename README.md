@@ -4,7 +4,7 @@
 
 HomeDB is a Database for the Home. It is built in Django using a Simple sqlite Database and YAML Configuration Stored Locally in the Filesystem.
 
-![Network Devices Demo Image](image.png)
+![Network Devices Demo Image](static/assets/image.png)
 
 ## Features
 
