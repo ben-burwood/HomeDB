@@ -1,7 +1,7 @@
 [project]
 name = "HomeDB"
-version = "1.0"
-description = "HomeDB is a Database for the Home."
+version = "1.0.01"
+description = "HomeDB is a Database for the Home"
 readme = "README.md"
 authors = [
     { name = "Ben Burwood", email = "ben.burwood@outlook.com" }
